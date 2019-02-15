@@ -27,11 +27,12 @@ class assessment(Frame):
 
     def buttonPlace(self):
         nextButton = Button(self, text="Next", command=self.client_exit)
-        nextButton.grid(column = 3,row = 3)
+        nextButton.grid(column = 3,row = 3,sticky=E)
         quitButton = Button(self, text="Quit", command=self.client_exit)
-        quitButton.grid(column=1,row=3)
+        quitButton.grid(column=1,row=3, sticky=E)
 
 
 root = Tk()
 app = assessment(root)
+root.geometry("500x400")
 root.mainloop()

@@ -65,6 +65,12 @@ class Create_Test(Frame):
             writer = csv.writer(csv_file, delimiter=',')
             writer.writerow([self.Question.get("1.0", "end-1c"),self.Answer1.get("1.0","end-1c"),
                              self.Answer2.get("1.0","end-1c"),self.Answer3.get("1.0","end-1c"),self.Answer4.get("1.0","end-1c")])
+    def clearResponse(self):
+       self.Question.delete("1.0", END)
+       self.Answer1.delete("1.0", END)
+       self.Answer2.delete("1.0", END)
+       self.Answer3.delete("1.0", END)
+       self.Answer4.delete("1.0", END)
         
     
 #Main

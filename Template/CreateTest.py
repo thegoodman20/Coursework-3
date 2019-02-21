@@ -1,7 +1,9 @@
 from tkinter import *
-from Response import Response
 from tkinter import messagebox
 import csv
+
+questionNumber = 1
+
 class Create_Test(Frame):
 # GUI Setup
     def __init__ (self, master):
@@ -11,7 +13,7 @@ class Create_Test(Frame):
         self.createTest()
         self.createButtons()
     def createTest(self):
-        lblQuestion = Label(self, text = 'Question 1', font=('MS', 8,'bold'))
+        lblQuestion = Label(self, text = 'Question ' + str(questionNumber), font=('MS', 8,'bold'))
         lblQuestion.grid(row=3, column= 4, rowspan=2)
         self.Question = Text(self, height=3,width=40)
         scroll = Scrollbar(self, command=self.Question.yview)
@@ -57,14 +59,30 @@ class Create_Test(Frame):
         self.Answer4.insert(END, "INPUT FOURTH CHOICE HERE")
 
     def createButtons(self):
-        butSave = Button(self, text='Save',font=('MS', 8,'bold'))
+        butNextQuestion = Button(self, text='Next Question',font=('MS', 8,'bold'))
+        butNextQuestion['command']=self.nextQuestion(questionNumber)
+        butNextQuestion.grid(row=30, column=2, columnspan=2)
+
+        butClear = Button(self, text='Clear',font=('MS', 8,'bold'))
+        butClear['command']=self.clearResponse
+        butClear.grid(row=30, column=4, columnspan=2)
+
+        """butNextQuestion = Button(self, text='Next Question',font=('MS', 8,'bold'))
         butSave['command']=self.saveTest
-        butSave.grid(row=30, column=2, columnspan=2)
-    def saveTest(self):
-        with open('Test1.csv', mode='w') as csv_file:
-            writer = csv.writer(csv_file, delimiter=',')
-            writer.writerow([self.Question.get("1.0", "end-1c"),self.Answer1.get("1.0","end-1c"),
-                             self.Answer2.get("1.0","end-1c"),self.Answer3.get("1.0","end-1c"),self.Answer4.get("1.0","end-1c")])
+        butSave.grid(row=30, column=6, columnspan=2)"""
+        
+    def nextQuestion(self, questionNumber):
+        with open('Test1.csv', mode='a') as csv_file:
+            #writer = csv.writer(csv_file, delimiter=',')
+            #writer.writerow([self.Question.get("1.0", "end-1c"),self.Answer1.get("1.0","end-1c"),
+                             #self.Answer2.get("1.0","end-1c"),self.Answer3.get("1.0","end-1c"),self.Answer4.get("1.0","end-1c")])
+            csv_file.write(self.Question.get("1.0", "end-1c")+",")
+            csv_file.write(self.Answer1.get("1.0","end-1c")+",")
+            csv_file.write(self.Answer2.get("1.0","end-1c")+",")
+            csv_file.write(self.Answer3.get("1.0","end-1c")+",")
+            csv_file.write(self.Answer4.get("1.0","end-1c")+"\n")
+        questionNumber += 1
+            
     def clearResponse(self):
        self.Question.delete("1.0", END)
        self.Answer1.delete("1.0", END)

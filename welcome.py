@@ -16,7 +16,12 @@ class Welcome(Frame):
         lblQuestion.grid(row=0, column= 4, rowspan=2)
 
         # Create widgets to select a module from a list
-        lblModules = Label(self, text='Modules you may have assesments in', font=('MS', 8,'bold'))
+        string = ""
+        if login.is_teacher:
+            string = "Modules you can create an assesment in"
+        else:
+            string = "Modules you may have assesments in"
+        lblModules = Label(self, text=string, font=('MS', 8,'bold'))
         lblModules.grid(row=2, column=0, columnspan=2, sticky=NE)
         
         self.listProg = Listbox(self, height= 3)

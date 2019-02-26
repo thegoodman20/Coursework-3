@@ -65,12 +65,10 @@ class Welcome(Frame):
         butSubmit.grid(row=4, column=0, columnspan=2)
         if login.is_teacher:
             butSubmit = Button(self, text='Create TEST!',font=('MS', 8,'bold'))
-            butSubmit['command']=self.takeTest
-            butSubmit.grid(row=8, column=0, columnspan=2)
         else:
             butSubmit = Button(self, text='Take TEST!',font=('MS', 8,'bold'))#rename me to thing depending on whether or not you are a teacher
-            butSubmit['command']=self.takeTest
-            butSubmit.grid(row=8, column=0, columnspan=2)
+        butSubmit['command']=self.takeTest
+        butSubmit.grid(row=8, column=0, columnspan=2)
     def checkTest(self):
         #get value of selected module
         if self.listProg.curselection() != ():#Check if the user has selected something

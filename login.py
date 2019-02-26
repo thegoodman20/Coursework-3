@@ -38,22 +38,24 @@ class Questionnaire(Frame):
         self.entPassword.delete(0, END)
     def Login(self):
         dontprint= 0
+        uname = self.entUsername.get()
+        pword = self.entPassword.get()
         with open('users.csv') as csvfile:
             rdr = csv.reader(csvfile)
             for row in rdr:
-                if row[0] == self.entUsername.get() and row[1] == self.entPassword.get():
+                if row[0] == uname and row[1] == pword:
                     global userID
                     global student_name
                     global is_teacher
-                    userID = self.entUsername.get()
+                    userID = uname
                     student_name = row[3]
                     if row[2] == "student":
                         is_teacher = False
                     else:
                         is_teacher = True
-                    
                     root.destroy()#close the login page
                     dontprint = 1
+                    print("HI")
             if dontprint == 0:
                 print("LOGIN FAILED")
                 self.clearResponse()

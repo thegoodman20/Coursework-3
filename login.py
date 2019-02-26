@@ -55,7 +55,6 @@ class Questionnaire(Frame):
                         is_teacher = True
                     root.destroy()#close the login page
                     dontprint = 1
-                    print("HI")
             if dontprint == 0:
                 print("LOGIN FAILED")
                 self.clearResponse()

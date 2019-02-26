@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import csv
 import login
+import CreateTest
 #Note for later self: check if a test name with the same name exists when creating a test. Maybe also add a timer so it gets deleted automatically
 class Welcome(Frame):
 # GUI Setup
@@ -64,7 +65,7 @@ class Welcome(Frame):
         butSubmit.grid(row=4, column=0, columnspan=2)
         
         butSubmit = Button(self, text='Take TEST!',font=('MS', 8,'bold'))#rename me to thing depending on whether or not you are a teacher
-        #butSubmit['command']=self.checkTest NEED TO IMPLEMENT HOW TO TAKE THE BLOODY TEST!!!
+        butSubmit['command']=self.takeTest
         butSubmit.grid(row=8, column=0, columnspan=2)
     def checkTest(self):
         #get value of selected module
@@ -79,6 +80,8 @@ class Welcome(Frame):
                 self.listTest.selection_set(END)
         else:
             messagebox.showwarning("ERROR","Please select a module")
+    def takeTest(self):
+        CreateTest.createTest()
 #Main
 if login.userID != "":
     root = Tk()

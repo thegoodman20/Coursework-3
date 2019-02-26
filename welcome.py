@@ -63,10 +63,14 @@ class Welcome(Frame):
         butSubmit = Button(self, text='Check for Tests',font=('MS', 8,'bold'))
         butSubmit['command']=self.checkTest #Note: no () after the method
         butSubmit.grid(row=4, column=0, columnspan=2)
-        
-        butSubmit = Button(self, text='Take TEST!',font=('MS', 8,'bold'))#rename me to thing depending on whether or not you are a teacher
-        butSubmit['command']=self.takeTest
-        butSubmit.grid(row=8, column=0, columnspan=2)
+        if login.is_teacher:
+            butSubmit = Button(self, text='Create TEST!',font=('MS', 8,'bold'))
+            butSubmit['command']=self.takeTest
+            butSubmit.grid(row=8, column=0, columnspan=2)
+        else:
+            butSubmit = Button(self, text='Take TEST!',font=('MS', 8,'bold'))#rename me to thing depending on whether or not you are a teacher
+            butSubmit['command']=self.takeTest
+            butSubmit.grid(row=8, column=0, columnspan=2)
     def checkTest(self):
         #get value of selected module
         if self.listProg.curselection() != ():#Check if the user has selected something

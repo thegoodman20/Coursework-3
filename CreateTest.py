@@ -6,7 +6,6 @@ create_file = 0
 saved_questions=[]
 def createTest():
 
-
     class Create_Test(Frame):
     # GUI Setup
         def __init__ (self, master):
@@ -179,3 +178,6 @@ def createTest():
     root.title("Create Test")
     app = Create_Test(root)
     root.mainloop()
+
+def editTest():
+   pass 

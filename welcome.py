@@ -41,6 +41,7 @@ class Welcome(Frame):
         self.listTest.grid(row=7, column=0, columnspan=2, sticky=NE)
         scroll.grid(row=7, column=7, sticky=W)
         
+        
     def retrieveModules(self):
         modules_list = []
         with open('user_modules.csv') as csvfile:
@@ -52,41 +53,62 @@ class Welcome(Frame):
                             modules_list.append(row[i])
         return modules_list
     def retrieveTests(self,module):
+        
         test_list = []
         with open('tests_overview.csv') as csvfile:
             rdr = csv.reader(csvfile)
             for row in rdr:
                 if row[0] == module:#Might need to add in the fact that a test gets taken
                     test_list.append(row[1])
-        return test_list
+        if len(test_list) == 0:
+            # rather than return empty list, return -1
+            return -1
+        else:
+            return test_list
     def createButtons(self):
         butSubmit = Button(self, text='Check for Tests',font=('MS', 8,'bold'))
         butSubmit['command']=self.checkTest #Note: no () after the method
         butSubmit.grid(row=4, column=0, columnspan=2)
         if login.is_teacher:
             butSubmit = Button(self, text='Create TEST!',font=('MS', 8,'bold'))
-            butSubmit['command']=self.takeTest
-            butSubmit.grid(row=8, column=0, columnspan=2)
+            butEdit = Button(self, text='Edit Test', font=('MS', 8,'bold'))
+            butEdit['command']=self.editTest
+            butEdit.grid(row = 8, column = 3, columnspan=2)
         else:
             butSubmit = Button(self, text='Take TEST!',font=('MS', 8,'bold'))#rename me to thing depending on whether or not you are a teacher
-            butSubmit['command']=self.takeTest
-            butSubmit.grid(row=8, column=0, columnspan=2)
+        butSubmit['command']=self.takeTest
+        butSubmit.grid(row=8, column=0, columnspan=2)
+
     def checkTest(self):
         #get value of selected module
+        
         if self.listProg.curselection() != ():#Check if the user has selected something
             index = self.listProg.curselection()[0]
             strModule = str(self.listProg.get(index))
             #retrieve tests for that module
             test_list = self.retrieveTests(strModule)
-            self.listTest.delete(0,END)
-            for test in test_list:
-                self.listTest.insert(END, test)
-                self.listTest.selection_set(END)
+            # i.e. if retrieveTests doesn't return -1
+            if test_list != -1:
+                self.listTest.delete(0,END)
+                for test in test_list:
+                    self.listTest.insert(END, test)
+                    self.listTest.selection_set(END)
+            else:
+                #clear list box and show message
+                self.listTest.delete(0,END)
+                messagebox.showwarning("Note!","There are no tests for that module. ")
         else:
             messagebox.showwarning("ERROR","Please select a module")
     def takeTest(self):
         CreateTest.createTest()
-#Main
+
+    def editTest(self):
+        if self.listTest.curselection() != ():#Check if the user has selected something
+            index = self.listTest.curselection()[0]
+            strModule = str(self.listTest.get(index))
+
+
+#mainloop
 if login.userID != "":
     root = Tk()
     root.title("HOME "+ str(login.userID))

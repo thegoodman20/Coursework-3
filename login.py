@@ -19,12 +19,12 @@ class Questionnaire(Frame):
     def createLogin(self):
         self.entUsername = Entry(self)
         self.entUsername.grid(row=0, column=4, columnspan=2, sticky=E)
-        self.entPassword = Entry(self)
+        self.entPassword = Entry(self, show='*')
         self.entPassword.grid(row=2, column=4, columnspan=2, sticky=E)
         
         lblCmnt = Label(self, text='Username', font=('MS', 8,'bold'))
         lblCmnt.grid(row=0, column = 0,rowspan = 2, sticky = E)
-        lblCmnt = Label(self, text='Password', font=('MS', 8,'bold'))
+        lblCmnt = Label(self, text='Password',font=('MS', 8,'bold'))
         lblCmnt.grid(row=2, column = 0)
     def createButtons(self):
         butSubmit = Button(self, text='Log-in',font=('MS', 8,'bold'))

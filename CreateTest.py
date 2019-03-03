@@ -4,7 +4,7 @@ import csv
 questionNumber = 1
 create_file = 0
 saved_questions=[]
-filename=str()
+#filename=str()
 #def createTest():
 
 class Create_Test(Frame):

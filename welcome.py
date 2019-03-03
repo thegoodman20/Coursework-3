@@ -47,6 +47,8 @@ class Welcome(Frame):
         with open('user_modules.csv') as csvfile:
             rdr = csv.reader(csvfile)
             for row in rdr:
+                #print(row)
+                #print("Does {} == {}".format(row[0], login.username))
                 if row[0] == login.username:
                     for i in range(1,6):
                         if row[i]!= "":
@@ -126,7 +128,7 @@ class Welcome(Frame):
                 #t1 = Toplevel()
                 #t1.title("Test")
                 Test.test_file(testName, strModule, name)
-                print('Test Created\nTest Name: {0:20}Teacher: {1:20}\n'.format(testName, teacher))
+                print('Test Created\nTest Name: {0:20}Teacher: {1:20}\n'.format(testName, name))
             else:
                 messagebox.showwarning("ERROR", "You must provide a test name")
         else:

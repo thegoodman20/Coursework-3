@@ -45,8 +45,8 @@ class LogIn(Frame):
         with open('users.csv') as csvfile:
             rdr = csv.reader(csvfile)
             for row in rdr:
-                #print(row[1] == username)
-                #print(row)
+                print(row[0] == username)
+                print(row)
                 if row[0] == username and row[1] == password:
                     failed = 0
                     global name

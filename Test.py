@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import messagebox
+#from tkinter import messagebox
 import csv
 
 class test_file(Frame):
@@ -10,6 +10,3 @@ class test_file(Frame):
 		open(testName+'.csv', mode='w')
 		with open("tests_overview.csv", mode = 'a') as csvfile:
 			csvfile.write('{},{},{}\n'.format(module, testName, teacherName))
-		
-
-

@@ -1,23 +1,24 @@
 from tkinter import *
 import csv
+
 userID = str()
-name = str()
+
+
 isTeacher = False
+name = str()
 
 class LogIn(Frame):
 	"""docstring for LogIn"""
 	def __init__(self, master):
 		Frame.__init__(self, master)
 		self.grid()
-		self.createPage()
+		self.createLogin()
 
 
-	def createPage(self):
+	def createLogin(self):
 		butSubmit = Button(self, text='Log-in',font=('MS', 8,'bold'), command = self.validateUser)
-		#butSubmit['command']=self.validateUser #Note: no () after the method
 		butSubmit.grid(row=16, column=2, columnspan=2)
-		butClear = Button(self, text='Clear',font=('MS', 8,'bold'))
-		butClear['command']=self.clearResponse
+		butClear = Button(self, text='Clear',font=('MS', 8,'bold'), command = self.clearResponse)
 		butClear.grid(row=16, column=4, columnspan=2)
 		self.entuserID = Entry(self)
 		self.entuserID.grid(row=0, column=4, columnspan=2, sticky=E)

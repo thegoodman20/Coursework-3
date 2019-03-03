@@ -3,7 +3,7 @@ from tkinter import messagebox
 from tkinter import simpledialog
 import csv
 import login
-import CreateTest
+#import CreateTest
 #Note for later self: check if a test name with the same name exists when creating a test. Maybe also add a timer so it gets deleted automatically
 
 class Welcome(Frame):

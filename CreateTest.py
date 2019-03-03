@@ -66,7 +66,6 @@ class Create_Test(Frame):
 
     def isQuestionSaved(self):
         for number in saved_questions:
-            print(number)
             if questionNumber == number:
                 self.printTextBox(True)
                 return
@@ -91,7 +90,6 @@ class Create_Test(Frame):
             self.Answer2.insert(END, "INPUT SECOND CHOICE HERE")
             self.Answer3.insert(END, "INPUT THIRD CHOICE HERE")
             self.Answer4.insert(END, "INPUT FOURTH CHOICE HERE")
-
 
     def createButtons(self):
         butNextQuestion = Button(self, text='Next Question',font=('MS', 8,'bold'))
@@ -167,10 +165,18 @@ class Create_Test(Frame):
             saved_questions.append(questionNumber)
             create_file += 1
 
-
     def clearResponse(self):
        self.Question.delete("1.0", END)
        self.Answer1.delete("1.0", END)
        self.Answer2.delete("1.0", END)
        self.Answer3.delete("1.0", END)
        self.Answer4.delete("1.0", END)
+
+#Main
+"""
+This isn't need as we can use Toplevel 
+root = Tk()
+root.title("Create Test")
+app = Create_Test(root)
+root.mainloop()
+"""

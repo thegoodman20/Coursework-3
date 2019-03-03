@@ -4,7 +4,7 @@ from tkinter import simpledialog
 import login
 import csv
 
-class createMenu(Frame):
+class Welcome(Frame):
 	"""docstring for menu"""
 	def __init__(self, master):
 		Frame.__init__(self, master)
@@ -39,6 +39,10 @@ class createMenu(Frame):
 		scroll.grid(row=7, column=7, sticky=W)
 
 	def createTest(self):
+		"""This function creates an empty csv 'test' file and also appends the test's 
+			metadata to the tests_overview file. The empty file created can then be opened 
+			using the editTest method which uses the Create_Test class"""
+
 		if self.listProg.curselection() != ():
 			index = self.listProg.curselection()[0]
 			strModule = str(self.listProg.get(index))
@@ -52,7 +56,9 @@ class createMenu(Frame):
 				t1.title("Test")
 				Test.test_file(t1, testName, strModule, name)
 			else:
-				messagebox.showwarning("ERROR", "You must provide a test name")
+				messagebox.showwarning("ERROR", "You must provide a test name!")
+		else:
+			messagebox.showwarning("ERROR", "You must choose a module!")
 
 	def checkTest(self):
 		""" This function appends the tests available for a give 
@@ -103,7 +109,6 @@ class createMenu(Frame):
 			return test_list
 		
 	def createButtons(self):
-
 		butCheck = Button(self, text='Check for Tests',font=('MS', 8,'bold'), command=self.checkTest)
 		butCheck.grid(row=4, column=0, columnspan=2)
 		if login.isTeacher:
@@ -123,20 +128,16 @@ class createMenu(Frame):
 			index = self.listTest.curselection()[0]
 			testfile = str(self.listTest.get(index))
 			edit = CreateTest.Create_Test(t1, testfile+'.csv')
-		
-
-	def takeTest(self):
-		pass
 
 #main
-
+"""
 print(login.userID)
 print(login.name)
 print("Teacher:", login.isTeacher)
-
+"""
 if login.userID:
 	root = Tk()
 	root.title('Menu')
-	app = createMenu(root)
+	app = Welcome(root)
 	root.mainloop()
 	

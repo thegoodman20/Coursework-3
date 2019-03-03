@@ -174,16 +174,3 @@ class Create_Test(Frame):
        self.Answer2.delete("1.0", END)
        self.Answer3.delete("1.0", END)
        self.Answer4.delete("1.0", END)
-        
-    def editTest(self, testName):
-    #    with open(testName+'csv') as csv_file:
-        pass
-
-
-#Main
-"""
-root = Tk()
-root.title("Create Test")
-app = Create_Test(root)
-root.mainloop()
-"""

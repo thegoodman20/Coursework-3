@@ -50,7 +50,7 @@ class Welcome(Frame):
                 #print(row)
                 #print("Does {} == {}".format(row[0], login.username))
                 if row[0] == login.username:
-                    for i in range(1,7):
+                    for i in range(1,len(row)):
                         if row[i]!= "":
                             modules_list.append(row[i])
         return modules_list
@@ -109,7 +109,7 @@ class Welcome(Frame):
             import CreateTest
             index = self.listTest.curselection()[0]
             testfile = str(self.listTest.get(index))
-            edit = CreateTest.Create_Test(t1, testfile+'.csv')
+            CreateTest.Create_Test(t1, testfile+'.csv')
         else:
             messagebox.showwarning("ERROR", "Please a pick an existing test to edit.")
     def createTest(self):

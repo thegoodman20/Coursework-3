@@ -3,6 +3,7 @@ from tkinter import messagebox
 from tkinter import simpledialog
 import csv
 import login
+import os
 #import CreateTest
 #Note for later self: check if a test name with the same name exists when creating a test. Maybe also add a timer so it gets deleted automatically
 
@@ -123,12 +124,15 @@ class Welcome(Frame):
             #print(strModule)
             name = login.name
             testName = simpledialog.askstring("Input", "Enter test name")
-            if testName: #if testName isn't None or isn't an empty str
+            # if testName isn't None or "" AND the file doesn't already exist 
+            if testName and os.path.isfile('.\\{}.csv'.format(testName)) == False: 
                 import Test
                 #t1 = Toplevel()
                 #t1.title("Test")
                 Test.test_file(testName, strModule, name)
                 print('Test Created\nTest Name: {0:20}Teacher: {1:20}\n'.format(testName, name))
+            elif testName:
+                messagebox.showwarning("ERROR", "Test with that name already exists!")
             else:
                 messagebox.showwarning("ERROR", "You must provide a test name")
         else:

@@ -50,7 +50,7 @@ class Welcome(Frame):
                 #print(row)
                 #print("Does {} == {}".format(row[0], login.username))
                 if row[0] == login.username:
-                    for i in range(1,6):
+                    for i in range(1,7):
                         if row[i]!= "":
                             modules_list.append(row[i])
         return modules_list
